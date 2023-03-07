@@ -47,9 +47,9 @@ jobs:
     - name: Terraform Init
       run: terraform init
       env:
-        CLIENT_ID=${{ secrets.CLIENT_ID }}
-        CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
-        TENANT_ID=${{ secrets.TENANT_ID }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
  
 
     # Checks that all Terraform configuration files adhere to a canonical format
