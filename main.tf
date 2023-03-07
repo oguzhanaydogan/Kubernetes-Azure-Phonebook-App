@@ -5,12 +5,12 @@ terraform {
       version = "3.45.0"
     }
   }
-  #  backend "azurerm" {
-  #   resource_group_name  = "ssh-key-rg"
-  #   storage_account_name = "mybackendterraformstate"
-  #   container_name       = "tfstate"
-  #   key                  = "terraform.tfstate"
-  # }
+   backend "azurerm" {
+    resource_group_name  = "ssh-key-rg"
+    storage_account_name = "mybackendterraformstate"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -24,12 +24,6 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-# resource "azurerm_container_registry" "acr" {
-#   name                = var.acr_name
-#   resource_group_name = azurerm_resource_group.rg.name
-#   location            = azurerm_resource_group.rg.location
-#   sku                 = "Standard"
-# }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-aks"
@@ -47,13 +41,3 @@ resource "azurerm_kubernetes_cluster" "aks" {
      type = "SystemAssigned"
   }
 }
-
-# resource "azurerm_role_assignment" "role_assignment" {
-#   principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
-#   role_definition_name             = "AcrPull"
-#   scope                            = azurerm_container_registry.acr.id
-#   skip_service_principal_aad_check = true
-#   depends_on = [
-#     azurerm_kubernetes_cluster.aks
-#   ]
-# }
