@@ -14,7 +14,7 @@ permissions:
 #These environment variables are used by the terraform azure provider to setup OIDD authenticate. 
 env:
   ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
-  ARM_SUBSCRIPTION_ID: "[67882e92-6412-4fc5-b9ca-1030aa09d729]"
+  ARM_SUBSCRIPTION_ID: "67882e92-6412-4fc5-b9ca-1030aa09d729"
   ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
   ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
 
