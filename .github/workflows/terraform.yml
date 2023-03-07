@@ -45,3 +45,9 @@ jobs:
     # Terraform Apply
     - name: Terraform Apply
       run: terraform apply -auto-approve
+      
+    - uses: Azure/k8s-deploy@v4
+      with:
+         namespace: 'myapp'
+         manifests: |
+            dir/k8s
