@@ -50,6 +50,7 @@ jobs:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         TENANT_ID: ${{ secrets.TENANT_ID }}
+        SUBSCRIPTION_ID: '67882e92-6412-4fc5-b9ca-1030aa09d729'
  
 
     # Checks that all Terraform configuration files adhere to a canonical format
