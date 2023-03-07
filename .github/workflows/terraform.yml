@@ -56,5 +56,4 @@ jobs:
          namespace: 'myapp'
          manifests: |
             k8s/
-               # Set the target AKS cluster.
 
