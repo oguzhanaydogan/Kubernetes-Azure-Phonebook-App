@@ -27,8 +27,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
-    - name: azure/login
-      run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+      
+    
+    - name: Log in with Azure 
+      uses: azure/login@v1 
+      with: 
+       creds: '${{ secrets.AZURE_CREDENTIALS }}' 
+       enable-AzPSSession: true
+#        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -39,6 +46,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+ 
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
