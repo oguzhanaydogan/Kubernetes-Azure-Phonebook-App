@@ -17,7 +17,7 @@ env:
   ARM_SUBSCRIPTION_ID: "67882e92-6412-4fc5-b9ca-1030aa09d729"
   ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
   ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
-
+  working-directory: ./
 
 jobs:
   terraform-plan:
@@ -26,8 +26,6 @@ jobs:
     env:
       #this is needed since we are running terraform with read-only permissions
       ARM_SKIP_PROVIDER_REGISTRATION: true
-    outputs:
-      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -43,14 +41,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
-      env:
-        CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        TENANT_ID: ${{ secrets.TENANT_ID }}
-        SUBSCRIPTION_ID: '[67882e92-6412-4fc5-b9ca-1030aa09d729]'
-        working-directory: ./
- 
 
     # Terraform Apply
     - name: Terraform Apply
-      run: terraform destroy -auto-approve
+      run: terraform apply -auto-approve
