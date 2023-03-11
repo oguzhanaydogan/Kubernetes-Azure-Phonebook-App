@@ -5,7 +5,3 @@ variable "prefix" {
 variable "location" {
   default = "East US"
 }
-
-variable "acr_name" {
-  default = "oaydoganweatherapp"
-}
